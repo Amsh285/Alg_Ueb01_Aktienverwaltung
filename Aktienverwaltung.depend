@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1514140574 source:c:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
+	<iostream>
+
+1583324249 source:c:\gitprojects\alg_ueb01_aktienverwaltung\share.cpp
+	"Share.h"
+
+1583324712 c:\gitprojects\alg_ueb01_aktienverwaltung\share.h
+	<string>
+
+1583324072 source:c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.cpp
+	"ShareEntry.h"
+
+1583324198 c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.h
+	<string>
+
+1583324408 source:c:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.cpp
+	"ShareContainer.h"
+
+1583324615 c:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.h
+	"Share.h"
+
