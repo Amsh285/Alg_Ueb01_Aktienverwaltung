@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include <math.h>
+#include "HashUtilities.h"
+
 using namespace std;
 
 int main()
