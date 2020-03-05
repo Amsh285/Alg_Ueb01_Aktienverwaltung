@@ -1,17 +1,27 @@
 # depslib dependency file v1.0
-1514140574 source:c:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
+1583439958 source:c:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
 	<iostream>
+	<fstream>
+	<string>
+	<math.h>
+	<vector>
+	"Share.h"
+	"HashUtilities.h"
+	"Utilities.h"
 
-1583324249 source:c:\gitprojects\alg_ueb01_aktienverwaltung\share.cpp
+1583436600 source:c:\gitprojects\alg_ueb01_aktienverwaltung\share.cpp
 	"Share.h"
 
-1583324712 c:\gitprojects\alg_ueb01_aktienverwaltung\share.h
+1583440609 c:\gitprojects\alg_ueb01_aktienverwaltung\share.h
+	"HashUtilities.h"
+	"ShareEntry.h"
 	<string>
+	<list>
 
-1583324072 source:c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.cpp
+1583436600 source:c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.cpp
 	"ShareEntry.h"
 
-1583324198 c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.h
+1583436600 c:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.h
 	<string>
 
 1583324408 source:c:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.cpp
@@ -63,5 +73,27 @@
 
 1583415053 d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.h
 	<vector>
+	<string>
+
+1583436600 source:c:\gitprojects\alg_ueb01_aktienverwaltung\hashutilities.cpp
+	"HashUtilities.h"
+
+1583436600 c:\gitprojects\alg_ueb01_aktienverwaltung\hashutilities.h
+	<string>
+	<math.h>
+
+1583443945 c:\gitprojects\alg_ueb01_aktienverwaltung\utilities.h
+	"CsvLineException.h"
+	"ShareEntry.h"
+	<vector>
+	<string>
+
+1583445023 source:c:\gitprojects\alg_ueb01_aktienverwaltung\utilities.cpp
+	"Utilities.h"
+
+1583443815 source:c:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.cpp
+	"CsvLineException.h"
+
+1583443756 c:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.h
 	<string>
 
