@@ -40,6 +40,8 @@
 		<Unit filename="ShareContainer.h" />
 		<Unit filename="ShareEntry.cpp" />
 		<Unit filename="ShareEntry.h" />
+		<Unit filename="Utilities.cpp" />
+		<Unit filename="Utilities.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

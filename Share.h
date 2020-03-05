@@ -10,7 +10,7 @@
 class Share
 {
     public:
-        Share();
+        Share(std::string name, std::string token, std::string isin);
         virtual ~Share();
 
         std::string GetName() const { return name; };
@@ -27,6 +27,8 @@ class Share
         std::string token;
         std::string isin;
         std::list<ShareEntry> shareEntries;
+
+        friend std::ostream& operator<<(std::ostream& stream, const Share& value);
 };
 
 #endif // SHARE_H
