@@ -2,6 +2,7 @@
 #define SHARECONTAINER_H
 
 #include "Share.h"
+#include "ShareContainer.h"
 
 class ShareContainer
 {

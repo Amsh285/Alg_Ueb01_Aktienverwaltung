@@ -1,9 +1,12 @@
 #include <iostream>
+#include "Hashtable.h"
 
-using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    Hashtable table(1000);
+
     return 0;
 }
+
+

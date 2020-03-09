@@ -10,7 +10,7 @@ class Share
         virtual ~Share();
 
         int GetHashCode();
-        bool Equals(Share& value);
+        bool Equals(Share* value);
     protected:
 
     private:
