@@ -4,14 +4,18 @@
 #include "Share.h"
 #include "ShareContainer.h"
 
+#include <stdexcept>
+
 class ShareContainer
 {
     public:
-        ShareContainer();
+        ShareContainer(Share *value);
         virtual ~ShareContainer();
 
         bool HasValue();
         Share *GetValue();
+
+        void DeleteContent();
     protected:
 
     private:

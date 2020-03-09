@@ -34,15 +34,23 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+
+		<Unit filename="CsvLineException.cpp" />
+		<Unit filename="CsvLineException.h" />
+		<Unit filename="HashUtilities.cpp" />
+		<Unit filename="HashUtilities.h" />
 		<Unit filename="Share.cpp" />
 		<Unit filename="Share.h" />
 		<Unit filename="ShareContainer.cpp" />
 		<Unit filename="ShareContainer.h" />
 		<Unit filename="ShareEntry.cpp" />
 		<Unit filename="ShareEntry.h" />
-		<Unit filename="include/Hashtable.h" />
-		<Unit filename="main.cpp" />
 		<Unit filename="src/Hashtable.cpp" />
+		<Unit filename="include/Hashtable.h" />
+		<Unit filename="Utilities.cpp" />
+		<Unit filename="Utilities.h" />
+		<Unit filename="main.cpp" />
+		
 		<Extensions>
 			<code_completion />
 			<envvars />
