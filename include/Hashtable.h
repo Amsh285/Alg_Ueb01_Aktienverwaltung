@@ -1,6 +1,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include "../ShareContainer.h"
+#include <string>
 
 
 class Hashtable
@@ -8,20 +9,18 @@ class Hashtable
     public:
         Hashtable(int);
         virtual ~Hashtable();
-        void Insert(ShareContainer*);
-        int Search(int);
-        void Delete(int);
+        void Insert(ShareContainer*, std::string);
+        int Search(std::string);
+        void Delete(std::string);
+        ShareContainer* getShare(int);
 
 
-
-
-    protected:
 
     private:
         bool isPrime(int);
         bool isEmpty(int);
         int CalculateIndex(int);
-        int Find(int);
+        int Find(std::string);
 
 
         int tableSize;

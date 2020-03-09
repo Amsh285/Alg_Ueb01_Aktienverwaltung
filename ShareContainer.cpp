@@ -2,7 +2,7 @@
 
 ShareContainer::ShareContainer(Share *value)
 {
-    if(value == nullptr)
+    if(value == NULL)
         throw std::invalid_argument("value cannot null.");
 
     this->value = value;
@@ -18,4 +18,14 @@ void ShareContainer::DeleteContent()
 {
     delete this->value;
     this->hasValue = false;
+}
+
+Share* ShareContainer::GetValue()
+{
+    return this->value;
+}
+
+bool ShareContainer::HasValue()
+{
+    return this->hasValue;
 }

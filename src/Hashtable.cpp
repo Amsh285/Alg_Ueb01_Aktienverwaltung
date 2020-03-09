@@ -2,6 +2,8 @@
 #include <iostream>
 #include "../ShareContainer.h"
 #include "../Share.h"
+#include "../HashUtilities.h"
+#include <string>
 
 Hashtable::Hashtable(int numberOfShares)
 {
@@ -11,6 +13,8 @@ Hashtable::Hashtable(int numberOfShares)
                                     // ensures a load factor of less than 50%
 
     ContainerTable = new ShareContainer*[tableSize];  // creates array of pointers
+    for(int i = 0; i < tableSize; i++)
+        this->ContainerTable[i] = NULL;
 }
 
 
@@ -21,17 +25,17 @@ Hashtable::~Hashtable()
 
 
 
-void Hashtable::Insert(ShareContainer* ShareContainerAddress)
+void Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
 {
-    Share* ShareAdress = ShareContainerAddress->GetValue();
-    int HashCode = ShareAdress->GetHashCode();
-    int index = CalculateIndex(HashCode);  // get index from hashcode
-    int originalIndex = index;      // save original index to probe with
+    Share* ShareAdress = ShareContainerAdress->GetValue();
+    int HashCode = HashUtilities::HashString(key);
+    int index = CalculateIndex(HashCode);
+    int originalIndex = index;
     int i = 1;
 
     while(!isEmpty(index))
     {
-        if(ShareAdress->Equals(ContainerTable[index]))
+        if(ShareAdress->Equals(ContainerTable[index]->GetValue()))
         {
             std::cout << "error, share already exists";
             return;
@@ -40,20 +44,29 @@ void Hashtable::Insert(ShareContainer* ShareContainerAddress)
         i++;
     }
 
-    ContainerTable[index] = ShareContainerAddress;
+    ContainerTable[index] = ShareContainerAdress;
 }
 
-int Hashtable::Search(int hashCode)
+
+
+
+int Hashtable::Search(std::string key)
 {
-    int index = Find(hashCode);
-    return index;
+    int index = Find(key);
+    return index;   // -1 index ==> share doesn't exist
 }
 
-void Hashtable::Delete(int hashCode)
+void Hashtable::Delete(std::string key)
 {
-    int index = Find(hashCode);
+    int index = Find(key);
     if(index != -1)                  //when found
-        ContainerTable->hasValue = false; //private, can't delete
+        ContainerTable[index]->DeleteContent();
+}
+
+
+ShareContainer* Hashtable::getShare(int index)
+{
+    return ContainerTable[index];
 }
 
 
@@ -102,17 +115,20 @@ int Hashtable::CalculateIndex(int hashCode)
 
 
 
-int Hashtable::Find(int hashCode)
+int Hashtable::Find(std::string key)
 {
+    int hashCode = HashUtilities::HashString(key);
     int index = CalculateIndex(hashCode);
     int originalIndex = index;
     int i = 1;
 
-    while(!isEmpty(ContainerTable[index]))
+    while(ContainerTable[index] != NULL)
     {
         if(ContainerTable[index]->HasValue())
-            if(ContainerTable[index]->GetValue()->Equals()) //??????? compare with what ??????
+            if(ContainerTable[index]->GetValue()->GetName() == key || ContainerTable[index]->GetValue()->GetToken() == key){
+                // if key is name or token, one general implementation
                 return index;
+            }
 
         index = (originalIndex + (i*i)) % tableSize;
         i++;

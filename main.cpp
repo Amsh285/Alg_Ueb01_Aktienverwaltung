@@ -8,6 +8,8 @@
 #include "Share.h"
 #include "HashUtilities.h"
 #include "Utilities.h"
+#include "ShareContainer.h"
+
 
 enum ConsoleCommands {
     ConsoleCommand_Help,
@@ -103,7 +105,45 @@ int main()
             std::cout << "Das Command: \"" << command << "\" wurde nicht erkannt." << std::endl;
         }
     }
-	
+
+
+
+    // ------ test code --------
+
+    Hashtable nameTable(1000);
+    Hashtable tokenTabel(1000);
+
+    Share share1("Microsoft", "msft", "123");
+    Share share2("Google", "ggl", "124");
+    Share share3("Microsoft", "msft", "23");
+
+    ShareContainer cntr1(&share1);
+    ShareContainer cntr2(&share2);
+    ShareContainer cntr3(&share3);
+
+    nameTable.Insert(&cntr1, cntr1.GetValue()->GetName());
+    tokenTabel.Insert(&cntr1, cntr1.GetValue()->GetToken());
+
+    nameTable.Insert(&cntr2, cntr2.GetValue()->GetName());
+    tokenTabel.Insert(&cntr2, cntr2.GetValue()->GetToken());
+
+    nameTable.Insert(&cntr3, cntr3.GetValue()->GetName());
+    tokenTabel.Insert(&cntr3, cntr3.GetValue()->GetToken());
+
+    tokenTabel.Delete("msft");
+
+
+    std::cout << tokenTabel.Search("msft") << "  " << tokenTabel.Search("ggl") << std::endl;
+    std::cout << nameTable.Search("Microsoft") << "  " << nameTable.Search("Google");
+
+    std::cout << "\n\n";
+
+    int indexGoogle = nameTable.Search("Google");
+    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetName() << std::endl;
+    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetToken() << std::endl;
+    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetIsin() << std::endl;
+
+
     return 0;
 }
 
