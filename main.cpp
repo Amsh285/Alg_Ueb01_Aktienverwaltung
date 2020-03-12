@@ -9,6 +9,9 @@
 #include "HashUtilities.h"
 #include "Utilities.h"
 #include "ShareContainer.h"
+#include "DatenContainer.h"
+
+#define SIZE 2003
 
 
 enum ConsoleCommands {
@@ -110,38 +113,33 @@ int main()
 
     // ------ test code --------
 
-    Hashtable nameTable(1000);
-    Hashtable tokenTabel(1000);
+    DatenContainer Table(SIZE);
 
     Share share1("Microsoft", "msft", "123");
-    Share share2("Google", "ggl", "124");
-    Share share3("Microsoft", "msft", "23");
+    Share share2("Microsoft", "msft", "23");  // gleiche aktie
+    Share share3("Microsoft", "bibi", "12451");  // gleicher name
+    Share share4("wewe", "msft", "23");      // gleiches kürzel
+    Share share5("Google", "ggl", "123321");
 
-    ShareContainer cntr1(&share1);
-    ShareContainer cntr2(&share2);
-    ShareContainer cntr3(&share3);
-
-    nameTable.Insert(&cntr1, cntr1.GetValue()->GetName());
-    tokenTabel.Insert(&cntr1, cntr1.GetValue()->GetToken());
-
-    nameTable.Insert(&cntr2, cntr2.GetValue()->GetName());
-    tokenTabel.Insert(&cntr2, cntr2.GetValue()->GetToken());
-
-    nameTable.Insert(&cntr3, cntr3.GetValue()->GetName());
-    tokenTabel.Insert(&cntr3, cntr3.GetValue()->GetToken());
-
-    tokenTabel.Delete("msft");
-
-
-    std::cout << tokenTabel.Search("msft") << "  " << tokenTabel.Search("ggl") << std::endl;
-    std::cout << nameTable.Search("Microsoft") << "  " << nameTable.Search("Google");
+    Table.Insert(&share1);
+    Table.Insert(&share2);
+    Table.Insert(&share3);
+    Table.Insert(&share4);
+    Table.Insert(&share5);
 
     std::cout << "\n\n";
 
-    int indexGoogle = nameTable.Search("Google");
-    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetName() << std::endl;
-    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetToken() << std::endl;
-    std::cout << nameTable.getShare(indexGoogle)->GetValue()->GetIsin() << std::endl;
+    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
+    std::cout << Table.Find("wewe") << " " << Table.Find("msft") << std::endl;
+    std::cout << Table.Find("Google") << " " << Table.Find("ggl") << std::endl;
+    Table.State();
+    Table.Delete("msft");
+    Table.Delete("fuck");
+    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
+    std::cout << Table.Find("wewe") << " " << Table.Find("msft") << std::endl;
+    Table.State();
+
+
 
 
     return 0;

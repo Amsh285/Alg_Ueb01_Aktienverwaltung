@@ -9,19 +9,13 @@ class Hashtable
     public:
         Hashtable(int);
         virtual ~Hashtable();
-        void Insert(ShareContainer*, std::string);
-        int Search(std::string);
-        void Delete(std::string);
-        ShareContainer* getShare(int);
-
-
+        bool Insert(ShareContainer*, std::string);
+        bool Delete(std::string);
+        int Find(std::string);
+        ShareContainer* getShare(int);   // nur zum testen
 
     private:
-        bool isPrime(int);
         bool isEmpty(int);
-        int CalculateIndex(int);
-        int Find(std::string);
-
 
         int tableSize;
         ShareContainer** ContainerTable;  // double pointer
