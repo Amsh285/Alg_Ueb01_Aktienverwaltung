@@ -116,28 +116,28 @@ int main()
     DatenContainer Table(SIZE);
 
     Share share1("Microsoft", "msft", "123");
-    Share share2("Microsoft", "msft", "23");  // gleiche aktie
-    Share share3("Microsoft", "bibi", "12451");  // gleicher name
+    Share sharex("Microsoft", "msft", "23");  // gleiche aktie
+  /*  Share share3("Microsoft", "bibi", "12451");  // gleicher name
     Share share4("wewe", "msft", "23");      // gleiches kürzel
-    Share share5("Google", "ggl", "123321");
+    Share share5("Google", "ggl", "123321"); */
 
     Table.Insert(&share1);
-    Table.Insert(&share2);
-    Table.Insert(&share3);
+    Table.Insert(&sharex);
+  /*  Table.Insert(&share3);
     Table.Insert(&share4);
-    Table.Insert(&share5);
+    Table.Insert(&share5); */
 
     std::cout << "\n\n";
 
     std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    std::cout << Table.Find("wewe") << " " << Table.Find("msft") << std::endl;
-    std::cout << Table.Find("Google") << " " << Table.Find("ggl") << std::endl;
-    Table.State();
     Table.Delete("msft");
-    Table.Delete("fuck");
     std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    std::cout << Table.Find("wewe") << " " << Table.Find("msft") << std::endl;
+    Share share2("Microsoft", "msft", "123");
+    Table.Insert(&share2);
+    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
     Table.State();
+
+
 
 
 

@@ -23,17 +23,15 @@ DatenContainer::~DatenContainer()
 
 void DatenContainer::Insert(Share* newShare)
 {
-    ShareContainer* temp = new ShareContainer(newShare);
-    int found;
-
-    found = nameTable->Find(temp->GetValue()->GetName());
+    int found = 0;
+    found = nameTable->Find(newShare->GetName());
 
     if(found == -1)   // if name not found, check token
     {
-        found = tokenTable->Find(temp->GetValue()->GetToken());
-
+        found = tokenTable->Find(newShare->GetToken());
         if(found == -1)  // if token not found, insert in both tables and return
         {
+            ShareContainer* temp = new ShareContainer(newShare);
             nameTable->Insert(temp, temp->GetValue()->GetName());
             tokenTable->Insert(temp, temp->GetValue()->GetToken());
             currentNumber++;
@@ -42,10 +40,7 @@ void DatenContainer::Insert(Share* newShare)
     }
 
         // if either name or token is allready in the table, procced with this code
-
-    std::cout << "error, share " << temp->GetValue()->GetName() << "(" << temp->GetValue()->GetToken() << ") allready exists" << std::endl;
-    temp->DeleteContent();
-    delete temp;
+    std::cout << "error, share " << newShare->GetName() << "(" << newShare->GetToken() << ") allready exists" << std::endl;
 }
 
 int DatenContainer::Find(std::string key)

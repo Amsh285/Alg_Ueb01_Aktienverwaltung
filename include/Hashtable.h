@@ -9,7 +9,7 @@ class Hashtable
     public:
         Hashtable(int);
         virtual ~Hashtable();
-        bool Insert(ShareContainer*, std::string);
+        void Insert(ShareContainer*, std::string);
         bool Delete(std::string);
         int Find(std::string);
         ShareContainer* getShare(int);   // nur zum testen

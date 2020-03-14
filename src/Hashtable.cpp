@@ -18,24 +18,25 @@ Hashtable::~Hashtable()
     delete[] ContainerTable;
 }
 
-bool Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
+void Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
 {
-    Share* ShareAdress = ShareContainerAdress->GetValue();
     int index = (HashUtilities::HashString(key)) % this->tableSize;
     int originalIndex = index;
     int i = 1;
 
     while(!isEmpty(index))
     {
-        if(ShareAdress->Equals(ContainerTable[index]->GetValue()))
-            return false;
+        if(!(ContainerTable[index]->HasValue()))       // if bucket is not empty but has no value (deleted share)
+        {
+            delete ContainerTable[index];                // delete container to make room for new one
+            break;                                       // break loop and insert
+        }
 
         index = (originalIndex + (i*i)) % tableSize;
         i++;
     }
 
     ContainerTable[index] = ShareContainerAdress;
-    return true;
 }
 
 int Hashtable::Find(std::string key)

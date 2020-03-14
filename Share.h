@@ -19,7 +19,7 @@ class Share
         std::list<ShareEntry*> GetShareEntries() const { return shareEntries; };
 
         int GetHashCode();
-        bool Equals(Share* value);
+        //bool Equals(Share* value);  // not needed anymore (I think)
     protected:
 
     private:

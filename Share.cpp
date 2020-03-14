@@ -22,10 +22,10 @@ int Share::GetHashCode()
     return hash;
 }
 
-bool Share::Equals(Share* value)
+/*bool Share::Equals(Share* value)
 {
     return name == value->name && token == value->token;
-}
+} */
 
 std::ostream& operator<<(std::ostream& stream, const Share& value)
 {
