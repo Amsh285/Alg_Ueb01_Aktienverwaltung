@@ -1,6 +1,8 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+
 #include "../ShareContainer.h"
+
 #include <string>
 
 
@@ -12,7 +14,7 @@ class Hashtable
         void Insert(ShareContainer*, std::string);
         bool Delete(std::string);
         int Find(std::string);
-        ShareContainer* getShare(int);   // nur zum testen
+        Share* getShare(int);
 
     private:
         bool isEmpty(int);

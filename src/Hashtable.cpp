@@ -1,9 +1,10 @@
 #include "Hashtable.h"
-#include <iostream>
 #include "../ShareContainer.h"
 #include "../Share.h"
 #include "../HashUtilities.h"
+
 #include <string>
+#include <iostream>
 
 
 Hashtable::Hashtable(int tableSize)
@@ -72,10 +73,10 @@ bool Hashtable::Delete(std::string key)
     return false;   // returns false, when element could not be found
 }
 
-ShareContainer* Hashtable::getShare(int index)
+Share* Hashtable::getShare(int index)
 {
-    return ContainerTable[index];
-}   // nur zum testen
+    return ContainerTable[index]->GetValue();
+}
 
 bool Hashtable::isEmpty(int index)
 {

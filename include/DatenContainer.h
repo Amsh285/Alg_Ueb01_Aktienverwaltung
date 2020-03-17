@@ -1,6 +1,8 @@
 #ifndef DATENCONTAINER_H
 #define DATENCONTAINER_H
+
 #include <string>
+
 #include "Hashtable.h"
 #include "../ShareContainer.h"
 #include "../Share.h"
@@ -22,8 +24,8 @@ class DatenContainer
         DatenContainer(int);
         virtual ~DatenContainer();
 
-        void Insert(Share*);
-        int Find(std::string);
+        bool Insert(Share*);
+        Share* Find(std::string);
         void Delete(std::string);
         void State();
 

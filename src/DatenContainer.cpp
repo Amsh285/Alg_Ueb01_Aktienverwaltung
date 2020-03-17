@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "DatenContainer.h"
 #include "Hashtable.h"
 #include "../ShareContainer.h"
@@ -21,38 +22,55 @@ DatenContainer::~DatenContainer()
     delete tokenTable;
 }
 
-void DatenContainer::Insert(Share* newShare)
+bool DatenContainer::Insert(Share* newShare)
 {
     int found = 0;
     found = nameTable->Find(newShare->GetName());
 
-    if(found == -1)   // if name not found, check token
+    if(found == -1)   // check for name in name table
     {
         found = tokenTable->Find(newShare->GetToken());
-        if(found == -1)  // if token not found, insert in both tables and return
+        if(found == -1)  // check for token in token table
         {
-            ShareContainer* temp = new ShareContainer(newShare);
-            nameTable->Insert(temp, temp->GetValue()->GetName());
-            tokenTable->Insert(temp, temp->GetValue()->GetToken());
-            currentNumber++;
-            return;
+            found = tokenTable->Find(newShare->GetName());  // check for name in token table
+            if(found == -1)
+            {
+                found = nameTable->Find(newShare->GetToken());   // check for token in name table
+                if(found == -1)
+                {
+                    ShareContainer* temp = new ShareContainer(newShare);
+                    nameTable->Insert(temp, temp->GetValue()->GetName());
+                    tokenTable->Insert(temp, temp->GetValue()->GetToken());
+                    currentNumber++;
+                    return true;   // when inserted, return true
+                }
+            }
         }
     }
 
-        // if either name or token is allready in the table, procced with this code
-    std::cout << "error, share " << newShare->GetName() << "(" << newShare->GetToken() << ") allready exists" << std::endl;
+    return false;   // if not inserted, return false
 }
 
-int DatenContainer::Find(std::string key)
+Share* DatenContainer::Find(std::string key)
 {
     int index = 0;
+    Share* askedShare = NULL;
 
     index = nameTable->Find(key);
-    if(index == -1)
-        index = tokenTable->Find(key);
+    if(index != -1)
+    {
+       askedShare = nameTable->getShare(index);
+       return askedShare;   // if share found in name table, return
+    }
 
-    return index;
+    index = tokenTable->Find(key);   // else check in token table
+
+    if(index != -1)
+        askedShare = tokenTable->getShare(index);
+
+    return askedShare;
 }
+
 
 void DatenContainer::Delete(std::string key)
 {

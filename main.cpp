@@ -29,6 +29,7 @@ enum ConsoleCommands {
 int main()
 {
     std::vector<std::string> supportedCommands({"Help", "Add", "Del", "Import", "Search", "Plot", "Save", "Load", "Quit"});
+    DatenContainer Table(SIZE);
 
     while(true)
     {
@@ -42,6 +43,7 @@ int main()
         if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Add], stdstring::StringComparisonOption_CaseInSensitive))
         {
             std::string name, token, isin;
+            bool success;
 
             std::cout << "[Aktie Erstellen] " << std::endl;
 
@@ -56,18 +58,34 @@ int main()
 
             Share *share = new Share(name, token, isin);
             // Insert me...
+            success = Table.Insert(share);
 
-            std::cout << *share << std::endl;
+            if(success)
+                std::cout << *share << " wurde erfolgreich eingeuegt" << std::endl;
+            else
+            {
+               std::cout << *share << " konnte nicht eingefuegt werden" << std::endl;
+               delete share;
+            }
+
             std::cout << "[Aktie Erstellen beendet] " << std::endl;
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Import], stdstring::StringComparisonOption_CaseInSensitive))
         {
-            std::string shareName, fileName;
+            std::string shareKey, fileName;
 
             std::cout << "[Kursdaten Import] " << std::endl;
 
-            std::cout << "Geben Sie den Namen der Aktie an fuer die der Import durchgefuehrt werden soll: ";
-            getline(std::cin, shareName);
+            std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
+            getline(std::cin, shareKey);
+
+            Share* shareInQuestion = Table.Find(shareKey);
+            if(shareInQuestion == NULL)
+                std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
+            else
+                // insert
+                // wie geht es weiter ab diesem schritt? machen wir weiter mit list oder
+                // ändern wir auf vector?
 
 
             // Todo: Check if Share Exists and extract Share.
@@ -113,31 +131,31 @@ int main()
 
     // ------ test code --------
 
-    DatenContainer Table(SIZE);
+   /* DatenContainer Table(SIZE);
 
     Share share1("Microsoft", "msft", "123");
-    Share sharex("Microsoft", "msft", "23");  // gleiche aktie
+    Share sharex("msft", "Microsoft", "23");  // gleiche aktie
   /*  Share share3("Microsoft", "bibi", "12451");  // gleicher name
     Share share4("wewe", "msft", "23");      // gleiches kürzel
     Share share5("Google", "ggl", "123321"); */
 
-    Table.Insert(&share1);
-    Table.Insert(&sharex);
+   /* Table.Insert(&share1);
+    Table.Insert(&sharex); */
   /*  Table.Insert(&share3);
     Table.Insert(&share4);
     Table.Insert(&share5); */
 
-    std::cout << "\n\n";
+   /* std::cout << "\n\n";
 
     std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    Table.Delete("msft");
+   // Table.Delete("msft");
     std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    Share share2("Microsoft", "msft", "123");
-    Table.Insert(&share2);
+    //Share share2("Microsoft", "msft", "123");
+    //Table.Insert(&share2);
     std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
     Table.State();
 
-
+ */
 
 
 
