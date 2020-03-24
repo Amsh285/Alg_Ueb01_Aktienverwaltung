@@ -79,10 +79,12 @@ int main()
             std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
             getline(std::cin, shareKey);
 
+            /*
             Share* shareInQuestion = Table.Find(shareKey);
             if(shareInQuestion == NULL)
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
-            else
+            else*/
+
                 // insert
                 // wie geht es weiter ab diesem schritt? machen wir weiter mit list oder
                 // ändern wir auf vector?
