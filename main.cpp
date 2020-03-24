@@ -79,13 +79,19 @@ int main()
             std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
             getline(std::cin, shareKey);
 
+            /*
             Share* shareInQuestion = Table.Find(shareKey);
             if(shareInQuestion == NULL)
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
+
             //else
+
+            else*/
+
+
                 // insert
                 // wie geht es weiter ab diesem schritt? machen wir weiter mit list oder
-                // ändern wir auf vector?
+                // ï¿½ndern wir auf vector?
 
 
             // Todo: Check if Share Exists and extract Share.
@@ -135,7 +141,7 @@ int main()
     Share share1("Microsoft", "msft", "123");
     Share sharex("msft", "Microsoft", "23");  // gleiche aktie
   /*  Share share3("Microsoft", "bibi", "12451");  // gleicher name
-    Share share4("wewe", "msft", "23");      // gleiches kürzel
+    Share share4("wewe", "msft", "23");      // gleiches kï¿½rzel
     Share share5("Google", "ggl", "123321"); */
 
    /* Table.Insert(&share1);
