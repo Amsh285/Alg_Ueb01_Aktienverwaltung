@@ -82,7 +82,7 @@ int main()
             Share* shareInQuestion = Table.Find(shareKey);
             if(shareInQuestion == NULL)
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
-            else
+            //else
                 // insert
                 // wie geht es weiter ab diesem schritt? machen wir weiter mit list oder
                 // ändern wir auf vector?
@@ -109,7 +109,6 @@ int main()
                     ShareEntry* item = shareentryfactory::CreateFromCsvString(row);
                     entries.push_back(item);
                 }
-
 
             }
             else
