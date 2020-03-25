@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="CsvLineException.cpp" />
+		<Unit filename="CsvLineException.h" />
 		<Unit filename="HashUtilities.cpp" />
 		<Unit filename="HashUtilities.h" />
 		<Unit filename="Share.cpp" />

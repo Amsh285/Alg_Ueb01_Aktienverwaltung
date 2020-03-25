@@ -16,7 +16,7 @@ class Share
         std::string GetName() const { return name; };
         std::string GetToken() const { return token; };
         std::string GetIsin() const { return isin; };
-        std::list<ShareEntry> GetShareEntries() const { return shareEntries; };
+        std::list<ShareEntry*> GetShareEntries() const { return shareEntries; };
 
         int GetHashCode();
         bool Equals(Share& value);
@@ -26,7 +26,7 @@ class Share
         std::string name;
         std::string token;
         std::string isin;
-        std::list<ShareEntry> shareEntries;
+        std::list<ShareEntry*> shareEntries;
 
         friend std::ostream& operator<<(std::ostream& stream, const Share& value);
 };

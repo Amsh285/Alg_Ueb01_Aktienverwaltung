@@ -57,9 +57,15 @@ int main()
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Import], stdstring::StringComparisonOption_CaseInSensitive))
         {
-            std::string fileName;
+            std::string shareName, fileName;
 
             std::cout << "[Kursdaten Import] " << std::endl;
+
+            std::cout << "Geben Sie den Namen der Aktie an fuer die der Import durchgefuehrt werden soll: ";
+            getline(std::cin, shareName);
+
+
+            // Todo: Check if Share Exists and extract Share.
 
             std::cout << "Geben Sie einen Dateinamen fuer die Import ein: ";
             getline(std::cin, fileName);
@@ -70,17 +76,15 @@ int main()
 
             if(inputStream.is_open())
             {
-                // D:\GitProjects\Alg_Ueb01_Aktienverwaltung\bin\Debug\MSFT.csv
-
                 std::string row;
                 std::getline(inputStream, row);
 
-                std::string cell;
-                int cellCounter = 0;
+                std::vector<ShareEntry*> entries;
 
-                while(std::getline(inputStream, cell, ','))
+                while(std::getline(inputStream, row))
                 {
-                    std::cout << cell << std::endl;
+                    ShareEntry* item = shareentryfactory::CreateFromCsvString(row);
+                    entries.push_back(item);
                 }
 
 
