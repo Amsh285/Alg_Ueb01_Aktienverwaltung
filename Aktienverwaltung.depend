@@ -30,13 +30,26 @@
 1583324615 c:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.h
 	"Share.h"
 
-1583339393 source:d:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.cpp
+1584435174 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\hashtable.cpp
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+	"../HashUtilities.h"
+	<string>
+	<iostream>
+
+1584435174 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\include\hashtable.h
+	"../ShareContainer.h"
+	<string>
+
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.cpp
 	"ShareContainer.h"
 
-1583339393 d:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.h
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.h
 	"Share.h"
+	<stdexcept>
 
-1583413770 d:\gitprojects\alg_ueb01_aktienverwaltung\share.h
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\share.h
 	"HashUtilities.h"
 	"ShareEntry.h"
 	<string>
@@ -52,26 +65,31 @@
 1583416154 d:\gitprojects\alg_ueb01_aktienverwaltung\shareentry.h
 	<string>
 
-1583349582 source:d:\gitprojects\alg_ueb01_aktienverwaltung\hashutilities.cpp
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\hashutilities.cpp
 	"HashUtilities.h"
 
-1583414457 source:d:\gitprojects\alg_ueb01_aktienverwaltung\share.cpp
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\share.cpp
 	"Share.h"
 
-1583417096 source:d:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
 	<iostream>
 	<fstream>
 	<string>
 	<math.h>
 	<vector>
+	"Hashtable.h"
 	"Share.h"
 	"HashUtilities.h"
 	"Utilities.h"
+	"ShareContainer.h"
+	"DatenContainer.h"
 
-1583415447 source:d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.cpp
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.cpp
 	"Utilities.h"
 
-1583415053 d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.h
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.h
+	"CsvLineException.h"
+	"ShareEntry.h"
 	<vector>
 	<string>
 
@@ -96,4 +114,105 @@
 
 1583443756 c:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.h
 	<string>
+
+1583749522 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\csvlineexception.cpp
+	"CsvLineException.h"
+
+1583773739 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\csvlineexception.h
+	<string>
+
+1583951681 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\hashutilities.cpp
+	"HashUtilities.h"
+
+1583749522 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\hashutilities.h
+	<string>
+	<math.h>
+
+1584371001 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<math.h>
+	<vector>
+	"Hashtable.h"
+	"Share.h"
+	"HashUtilities.h"
+	"Utilities.h"
+	"ShareContainer.h"
+	"DatenContainer.h"
+
+1583944613 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\sharecontainer.h
+	"Share.h"
+	<stdexcept>
+
+1584205020 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.h
+	"HashUtilities.h"
+	"ShareEntry.h"
+	<string>
+	<list>
+
+1583749522 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\shareentry.h
+	<string>
+
+1583749522 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\utilities.h
+	"CsvLineException.h"
+	"ShareEntry.h"
+	<vector>
+	<string>
+
+1584204914 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.cpp
+	"Share.h"
+
+1583751606 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\sharecontainer.cpp
+	"ShareContainer.h"
+
+1583749522 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\shareentry.cpp
+	"ShareEntry.h"
+
+1583749522 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\utilities.cpp
+	"Utilities.h"
+
+1584435094 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\datencontainer.cpp
+	<iostream>
+	"DatenContainer.h"
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+
+1584435174 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\include\datencontainer.h
+	<string>
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.cpp
+	"CsvLineException.h"
+
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.h
+	<string>
+
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\include\hashtable.h
+	"../ShareContainer.h"
+	<string>
+
+1585098480 d:\gitprojects\alg_ueb01_aktienverwaltung\include\datencontainer.h
+	<string>
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\src\datencontainer.cpp
+	<iostream>
+	"DatenContainer.h"
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+
+1585098480 source:d:\gitprojects\alg_ueb01_aktienverwaltung\src\hashtable.cpp
+	"Hashtable.h"
+	"../ShareContainer.h"
+	"../Share.h"
+	"../HashUtilities.h"
+	<string>
+	<iostream>
 

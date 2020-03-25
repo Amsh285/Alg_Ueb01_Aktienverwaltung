@@ -42,7 +42,7 @@ namespace shareentryfactory
     ShareEntry *CreateFromCsvString(const std::string& value)
     {
         int numberOfExpectedColumns = 7;
-        int actualColumnCount = 0;
+        int actualColumnCount = 1;
 
         std::string tmp = value;
         std::vector<std::string> shareEntryData;
@@ -56,6 +56,9 @@ namespace shareentryfactory
             tmp.erase(0, position + delimiter.length());
             ++actualColumnCount;
         }
+
+        std::string test = tmp.substr(0, tmp.size());
+        shareEntryData.push_back(test);
 
         if(numberOfExpectedColumns != actualColumnCount)
             throw CsvLineException(
