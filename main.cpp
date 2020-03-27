@@ -10,6 +10,7 @@
 #include "Utilities.h"
 #include "ShareContainer.h"
 #include "DatenContainer.h"
+#include "DummyTableTestClass.h"
 
 #define SIZE 2003
 
@@ -28,8 +29,9 @@ enum ConsoleCommands {
 
 int main()
 {
-    std::vector<std::string> supportedCommands({"Help", "Add", "Del", "Import", "Search", "Plot", "Save", "Load", "Quit"});
+    std::vector<std::string> supportedCommands({"Help", "Add", "Delete", "Import", "Search", "Plot", "Save", "Load", "Quit"});
     DatenContainer Table(SIZE);
+    std::string shareKey; // search variable, user input will be saved here and operations will be conducted with this string
 
     while(true)
     {
@@ -57,7 +59,6 @@ int main()
             std::getline(std::cin, isin);
 
             Share *share = new Share(name, token, isin);
-            // Insert me...
             success = Table.Insert(share);
 
             if(success)
@@ -72,29 +73,18 @@ int main()
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Import], stdstring::StringComparisonOption_CaseInSensitive))
         {
-            std::string shareKey, fileName;
+            std::string  fileName;
 
             std::cout << "[Kursdaten Import] " << std::endl;
 
             std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
             getline(std::cin, shareKey);
 
-            /*
-            Share* shareInQuestion = Table.Find(shareKey);
-            if(shareInQuestion == NULL)
+            if(Table.Find(shareKey) == NULL)
+            {
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
-
-            //else
-
-            else*/
-
-
-                // insert
-                // wie geht es weiter ab diesem schritt? machen wir weiter mit list oder
-                // �ndern wir auf vector?
-
-
-            // Todo: Check if Share Exists and extract Share.
+                continue;  // jump back to loop begin and ignore following code
+            }
 
             std::cout << "Geben Sie einen Dateinamen fuer die Import ein: ";
             getline(std::cin, fileName);
@@ -116,11 +106,47 @@ int main()
                     entries.push_back(item);
                 }
 
+                Table.Find(shareKey)->setEntries(entries);
             }
             else
                 std::cout << "Die Datei: " << fileName << " konnte nicht geoeffnet werden" << std::endl;
 
             std::cout << "[Kursdaten Import beendet] " << std::endl;
+        }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Plot], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+
+            std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie deren letzten 30 Boersenschlusswerte angezeigt werden sollen: ";
+            getline(std::cin, shareKey);
+
+            if(Table.Find(shareKey) == NULL)
+            {
+                std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
+                continue;  // if not found, loop will jump back to start
+            }
+            Table.Find(shareKey)->plotLast30Close();
+
+        }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Search], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+
+            std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie die gesucht werden soll: ";
+            getline(std::cin, shareKey);
+
+            if(Table.Find(shareKey) == NULL)
+            {
+                std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
+                continue;  // if not found, loop will jump back to start
+            }
+            Table.Find(shareKey)->printInfo();
+
+        }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Delete], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+
+            std::cout << "Geben Sie den name oder das Kuerzel der Aktie die geloescht werden soll: ";
+            getline(std::cin, shareKey);
+            Table.Delete(shareKey);
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Quit], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -136,31 +162,31 @@ int main()
 
     // ------ test code --------
 
-   /* DatenContainer Table(SIZE);
 
-    Share share1("Microsoft", "msft", "123");
-    Share sharex("msft", "Microsoft", "23");  // gleiche aktie
-  /*  Share share3("Microsoft", "bibi", "12451");  // gleicher name
-    Share share4("wewe", "msft", "23");      // gleiches k�rzel
-    Share share5("Google", "ggl", "123321"); */
 
-   /* Table.Insert(&share1);
-    Table.Insert(&sharex); */
-  /*  Table.Insert(&share3);
-    Table.Insert(&share4);
-    Table.Insert(&share5); */
+    /*Share share1("Microsoft", "msft", "123");
+    //Share sharex("msft", "Microsoft", "23");  // gleiche aktie
+    Share share2("Microsoft", "msft", "123");
 
-   /* std::cout << "\n\n";
+    Table.Insert(&share1);
+    Table.Delete("msft");
+    Table.Insert(&share2);
+    //Table.Find("msft")->printInfo(); */
 
-    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-   // Table.Delete("msft");
-    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    //Share share2("Microsoft", "msft", "123");
-    //Table.Insert(&share2);
-    std::cout << Table.Find("Microsoft") << " " << Table.Find("msft") << std::endl;
-    Table.State();
 
- */
+    DummyTableTestClass table;
+    table.Insert(50);
+    table.Insert(100);
+    table.Insert(150);
+    table.Insert(200);
+    table.Insert(250);
+
+    std::cout << table.getIndex(50) << std::endl;
+    std::cout << table.getIndex(100) << std::endl;
+    std::cout << table.getIndex(150) << std::endl;
+    std::cout << table.getIndex(200) << std::endl;
+    std::cout << table.getIndex(250) << std::endl;
+
 
 
 

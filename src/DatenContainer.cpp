@@ -12,7 +12,7 @@ DatenContainer::DatenContainer(int capacity)
     this->fillLevel = 0;
     this->currentNumber = 0;
 
-    nameTable = new Hashtable(capacity);
+    nameTable = new Hashtable(capacity); // create both tables
     tokenTable = new Hashtable(capacity);
 }
 
@@ -26,6 +26,7 @@ bool DatenContainer::Insert(Share* newShare)
 {
     int found = 0;
     found = nameTable->Find(newShare->GetName());
+
 
     if(found == -1)   // check for name in name table
     {
@@ -60,7 +61,7 @@ Share* DatenContainer::Find(std::string key)
     if(index != -1)
     {
        askedShare = nameTable->getShare(index);
-       return askedShare;   // if share found in name table, return
+       return askedShare;   // if share found in name table, return it
     }
 
     index = tokenTable->Find(key);   // else check in token table
@@ -68,18 +69,18 @@ Share* DatenContainer::Find(std::string key)
     if(index != -1)
         askedShare = tokenTable->getShare(index);
 
-    return askedShare;
+    return askedShare;  // will return either share in token table or null if not found
 }
 
 
 void DatenContainer::Delete(std::string key)
 {
-    bool success = nameTable->Delete(key);
+    bool success = nameTable->Delete(key); // delete in name table and save status
 
     if(!success)
-        success = tokenTable->Delete(key);
+        success = tokenTable->Delete(key);  // try to delete in token table, if not found in name
 
-    if(success)
+    if(success) // if deleted, adjust statistics
     {
         std::cout << key << " deleted" << std::endl;
 
@@ -88,11 +89,12 @@ void DatenContainer::Delete(std::string key)
             currentNumber = 0;
     }
     else
-        std::cout << "Share " << key  << " could not be found" << std::endl;
+        std::cout << "Aktie " << key  << " koennte nicht gefunden werden" << std::endl;
 }
 
 void DatenContainer::State()
 {
+    // prints fill level and current number of shares in the table
     this->fillLevel = (double) this->currentNumber / this->capacity;
 
     std::cout << "there are currently " << this->currentNumber << " shares in the table" << std::endl;

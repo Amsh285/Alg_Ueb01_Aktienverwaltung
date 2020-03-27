@@ -30,7 +30,7 @@
 1583324615 c:\gitprojects\alg_ueb01_aktienverwaltung\sharecontainer.h
 	"Share.h"
 
-1584435174 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\hashtable.cpp
+1585147283 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\hashtable.cpp
 	"Hashtable.h"
 	"../ShareContainer.h"
 	"../Share.h"
@@ -128,7 +128,7 @@
 	<string>
 	<math.h>
 
-1584955647 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\main.cpp
+1585316467 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\main.cpp
 	<iostream>
 	<fstream>
 	<string>
@@ -140,16 +140,17 @@
 	"Utilities.h"
 	"ShareContainer.h"
 	"DatenContainer.h"
+	"DummyTableTestClass.h"
 
 1583944613 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\sharecontainer.h
 	"Share.h"
 	<stdexcept>
 
-1584205020 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.h
+1585251216 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.h
 	"HashUtilities.h"
 	"ShareEntry.h"
 	<string>
-	<list>
+	<vector>
 
 1583749522 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\shareentry.h
 	<string>
@@ -160,19 +161,22 @@
 	<vector>
 	<string>
 
-1584204914 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.cpp
+1585148286 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\share.cpp
 	"Share.h"
+	<iostream>
+	<iomanip>
+	<ios>
 
-1583751606 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\sharecontainer.cpp
+1585142882 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\sharecontainer.cpp
 	"ShareContainer.h"
 
 1583749522 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\shareentry.cpp
 	"ShareEntry.h"
 
-1583749522 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\utilities.cpp
+1585058990 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\utilities.cpp
 	"Utilities.h"
 
-1584435094 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\datencontainer.cpp
+1585147283 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\datencontainer.cpp
 	<iostream>
 	"DatenContainer.h"
 	"Hashtable.h"
@@ -215,4 +219,9 @@
 	"../HashUtilities.h"
 	<string>
 	<iostream>
+
+1585316416 source:c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\src\dummytabletestclass.cpp
+	"DummyTableTestClass.h"
+
+1585316416 c:\users\taha\documents\github\alg_ueb01_aktienverwaltung\include\dummytabletestclass.h
 
