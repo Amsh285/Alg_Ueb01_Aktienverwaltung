@@ -37,18 +37,23 @@ void Share::setEntries(std::vector<ShareEntry*> &entries)
 
 void Share::plotLast30Close() const
 {
-    std::cout << "\n -- die letzten 30 Boersenschlusswerte fuer " << this->GetName() << " --\n";
+    std::cout << "\n -- die letzten 30 Boersenschlusswerte fuer " << this->GetName() << " --\n\n";
     if(this->shareEntries.empty())
         std::cout << "diese Aktie hat noch keine Eintraege\n" << std::endl;
     else
     {
-       for(int i = this->shareEntries.size() - 1; i > this->shareEntries.size() - 30; i--)
+        std::cout << "                      150                170                190                210+\n" << std::endl;
+        for(int i = this->shareEntries.size() - 1; i > this->shareEntries.size() - 30; i--)
         {
-        std::cout << this->shareEntries[i]->GetDate() << "   ";
-        std::cout << std::setw(6) << std::left << this->shareEntries[i]->GetClose() << "   ";
-        for(int j = 0; j < this->shareEntries[i]->GetClose() - 150 ; j++)
-            std::cout << "-";
-        std::cout << "\n";
+            int j = 0;
+            std::cout << this->shareEntries[i]->GetDate() << "            ";
+            for(; j < this->shareEntries[i]->GetClose() - 150 ; j++)
+                std::cout << "-";
+
+            for(; j < 70;j++)
+                std::cout << " ";
+
+            std::cout << std::setw(6) << std::left << this->shareEntries[i]->GetClose() << "\n";
         }
         std::cout << "\n";
     }
