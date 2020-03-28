@@ -12,6 +12,16 @@
 #include "DatenContainer.h"
 #include "DummyTableTestClass.h"
 
+#include "HashTableSerializer.h"
+
+#include "Json/StringHelper.h"
+#include "Json/JsonUtilities.h"
+//#include "HashTableDeserializer.h"
+
+//#include "Json/JsonParser.h"
+
+//#include "Json/InsideStringLiteralState.h"
+
 #define SIZE 2003
 
 
@@ -150,7 +160,25 @@ int main()
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Save], stdstring::StringComparisonOption_CaseInSensitive))
         {
+            std::cout << "Speichere Aktien..." << std::endl;
 
+            HashTableSerializer serializer;
+
+            serializer.SerializeHashTable(Table.GetNameTable(), "Data/nameTable.json");
+            serializer.SerializeHashTable(Table.GetTokenTable(), "Data/tokenTable.json");
+
+            std::cout << "Speichern beendet." << std::endl;
+        }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Load], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+            std::cout << "Lade Aktien..." << std::endl;
+
+            /*
+            HashTableDeserializer deserializer;
+            HashTable* nameTable = deserializer.Deserialize("nameTable.json", SIZE);
+            Hashtable* tokenTable = deserializer.Deserialize("tokenTable.json", SIZE);*/
+
+            std::cout << "Laden beendet..." << std::endl;
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Quit], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -161,7 +189,6 @@ int main()
             std::cout << "Das Command: \"" << command << "\" wurde nicht erkannt." << std::endl;
         }
     }
-
 
 
     // ------ test code --------

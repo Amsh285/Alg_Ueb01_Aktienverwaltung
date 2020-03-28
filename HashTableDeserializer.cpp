@@ -99,7 +99,7 @@ Share* HashTableDeserializer::BuildShare(JsonObject* shareObject)
 
     JsonObject* entryArrayObject = (JsonObject*)GetByName("shareEntries", shareObject);
     std::vector<ShareEntry*> entries = BuildShareEntries(entryArrayObject);
-    //Todo Insert it to Share!!!
+    result->setEntries(entries);
 
     return result;
 }

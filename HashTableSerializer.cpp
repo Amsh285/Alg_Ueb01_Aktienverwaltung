@@ -29,8 +29,14 @@ void HashTableSerializer::SerializeHashTable(Hashtable* table,  std::string path
     }
 
     std::ofstream outStream (path, std::ofstream::out);
-    outStream << root->ToJsonString();
-    outStream.close();
+
+    if(outStream.is_open())
+    {
+        std::string jsonValue = root->ToJsonString();
+
+        outStream << jsonValue;
+        outStream.close();
+    }
 
     delete root;
 }
