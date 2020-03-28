@@ -18,9 +18,10 @@
 #include "Json/JsonUtilities.h"
 //#include "HashTableDeserializer.h"
 
-//#include "Json/JsonParser.h"
 
 //#include "Json/InsideStringLiteralState.h"
+//#include "Json/JsonParser.h"
+
 
 #define SIZE 2003
 
@@ -116,7 +117,24 @@ int main()
                     entries.push_back(item);
                 }
 
-                Table.Find(shareKey)->setEntries(entries);
+                if(entries.size() > 30)
+                {
+                    std::vector<ShareEntry*>::const_iterator beginDeletes = entries.begin();
+                    std::vector<ShareEntry*>::const_iterator beginTakes = entries.end() - 30;
+                    std::vector<ShareEntry*>::const_iterator last = entries.end();
+
+                    std::vector<ShareEntry*> deletes(beginDeletes, beginTakes);
+                    std::vector<ShareEntry*> takes(beginTakes, last);
+
+                    //std::cout << "delete.size(): " << deletes.size() << " " << "takes.size(): " << takes.size();
+
+                    for(unsigned int i = 0;i < deletes.size();++i)
+                        delete deletes[i];
+
+                    Table.Find(shareKey)->setEntries(takes);
+                }
+                else
+                    Table.Find(shareKey)->setEntries(entries);
             }
             else
                 std::cout << "Die Datei: " << fileName << " konnte nicht geoeffnet werden" << std::endl;

@@ -84,13 +84,13 @@
 	"JsonNode.h"
 	"JsonObject.h"
 
-1585390093 d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentifier.h
+1585397337 d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentifier.h
 	<string>
 	"InsideStringLiteralState.h"
 	"JsonObjectIdentficationException.h"
 	"JsonUtilities.h"
 
-1585395012 d:\gitprojects\alg_ueb01_aktienverwaltung\json\insidestringliteralstate.h
+1585397447 d:\gitprojects\alg_ueb01_aktienverwaltung\json\insidestringliteralstate.h
 	"FlipSwitch.h"
 	"JsonUtilities.h"
 
@@ -160,7 +160,7 @@
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\flipswitch.cpp
 	"FlipSwitch.h"
 
-1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\insidestringliteralstate.cpp
+1585397447 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\insidestringliteralstate.cpp
 	"InsideStringLiteralState.h"
 
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonnode.cpp
@@ -172,7 +172,7 @@
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentficationexception.cpp
 	"JsonObjectIdentficationException.h"
 
-1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentifier.cpp
+1585397351 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentifier.cpp
 	"JsonObjectIdentifier.h"
 
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectsegmenter.cpp
@@ -196,7 +196,7 @@
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\stringhelper.cpp
 	"StringHelper.h"
 
-1585395600 source:d:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
+1585398035 source:d:\gitprojects\alg_ueb01_aktienverwaltung\main.cpp
 	<iostream>
 	<fstream>
 	<string>
