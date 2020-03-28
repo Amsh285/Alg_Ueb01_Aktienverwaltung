@@ -7,6 +7,7 @@
 class ShareContainer
 {
     public:
+        ShareContainer();
         ShareContainer(Share *value);
         virtual ~ShareContainer();
 

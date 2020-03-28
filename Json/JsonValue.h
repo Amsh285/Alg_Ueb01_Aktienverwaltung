@@ -13,6 +13,8 @@ class JsonValue : public JsonNode
     public:
         JsonValue(std::string name, std::string value, JsonObject* parent);
 
+        std::string GetValue() { return value; };
+
         virtual std::string ToJsonString();
         virtual ~JsonValue();
 
