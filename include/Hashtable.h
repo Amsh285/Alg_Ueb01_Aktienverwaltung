@@ -16,6 +16,9 @@ class Hashtable
         int Find(std::string);
         Share* getShare(int);
 
+        int GetTableSize() const { return tableSize; };
+        ShareContainer** GetItems() const { return ContainerTable; };
+
     private:
         bool isEmpty(int);
 
