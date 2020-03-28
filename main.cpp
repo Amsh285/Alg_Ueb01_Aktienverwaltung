@@ -12,6 +12,17 @@
 #include "DatenContainer.h"
 #include "DummyTableTestClass.h"
 
+#include "HashTableSerializer.h"
+
+#include "Json/StringHelper.h"
+#include "Json/JsonUtilities.h"
+//#include "HashTableDeserializer.h"
+
+
+//#include "Json/InsideStringLiteralState.h"
+//#include "Json/JsonParser.h"
+
+
 #define SIZE 2003
 
 
@@ -106,7 +117,24 @@ int main()
                     entries.push_back(item);
                 }
 
-                Table.Find(shareKey)->setEntries(entries);
+                if(entries.size() > 30)
+                {
+                    std::vector<ShareEntry*>::const_iterator beginDeletes = entries.begin();
+                    std::vector<ShareEntry*>::const_iterator beginTakes = entries.end() - 30;
+                    std::vector<ShareEntry*>::const_iterator last = entries.end();
+
+                    std::vector<ShareEntry*> deletes(beginDeletes, beginTakes);
+                    std::vector<ShareEntry*> takes(beginTakes, last);
+
+                    //std::cout << "delete.size(): " << deletes.size() << " " << "takes.size(): " << takes.size();
+
+                    for(unsigned int i = 0;i < deletes.size();++i)
+                        delete deletes[i];
+
+                    Table.Find(shareKey)->setEntries(takes);
+                }
+                else
+                    Table.Find(shareKey)->setEntries(entries);
             }
             else
                 std::cout << "Die Datei: " << fileName << " konnte nicht geoeffnet werden" << std::endl;
@@ -148,6 +176,28 @@ int main()
             getline(std::cin, shareKey);
             Table.Delete(shareKey);
         }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Save], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+            std::cout << "Speichere Aktien..." << std::endl;
+
+            HashTableSerializer serializer;
+
+            serializer.SerializeHashTable(Table.GetNameTable(), "Data/nameTable.json");
+            serializer.SerializeHashTable(Table.GetTokenTable(), "Data/tokenTable.json");
+
+            std::cout << "Speichern beendet." << std::endl;
+        }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Load], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+            std::cout << "Lade Aktien..." << std::endl;
+
+            /*
+            HashTableDeserializer deserializer;
+            HashTable* nameTable = deserializer.Deserialize("nameTable.json", SIZE);
+            Hashtable* tokenTable = deserializer.Deserialize("tokenTable.json", SIZE);*/
+
+            std::cout << "Laden beendet..." << std::endl;
+        }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Quit], stdstring::StringComparisonOption_CaseInSensitive))
         {
             break;
@@ -157,7 +207,6 @@ int main()
             std::cout << "Das Command: \"" << command << "\" wurde nicht erkannt." << std::endl;
         }
     }
-
 
 
     // ------ test code --------

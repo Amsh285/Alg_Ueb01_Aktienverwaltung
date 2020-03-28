@@ -36,6 +36,12 @@
 		</Compiler>
 		<Unit filename="CsvLineException.cpp" />
 		<Unit filename="CsvLineException.h" />
+		<Unit filename="HashTableDeserializer.cpp" />
+		<Unit filename="HashTableDeserializer.h" />
+		<Unit filename="HashTableDeserializerException.cpp" />
+		<Unit filename="HashTableDeserializerException.h" />
+		<Unit filename="HashTableSerializer.cpp" />
+		<Unit filename="HashTableSerializer.h" />
 		<Unit filename="HashUtilities.cpp" />
 		<Unit filename="HashUtilities.h" />
 		<Unit filename="Json/FlipSwitch.cpp" />

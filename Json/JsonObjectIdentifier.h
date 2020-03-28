@@ -7,10 +7,7 @@
 #include "JsonObjectIdentficationException.h"
 #include "JsonUtilities.h"
 
-
 using namespace GlobalJsonDefinitions;
-
-//typedef std::tuple<std::string::size_type, JsonElementType> ;
 
 class IdentificationResult
 {

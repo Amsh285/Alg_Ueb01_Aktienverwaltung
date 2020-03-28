@@ -12,6 +12,9 @@ Hashtable::Hashtable(int tableSize)
     this->tableSize = tableSize;
 
     ContainerTable = new ShareContainer*[tableSize];  // creates array of pointers to shareContainers
+
+    for(int i = 0;i < tableSize;++i)
+        ContainerTable[i] = NULL;
 }
 
 Hashtable::~Hashtable()
