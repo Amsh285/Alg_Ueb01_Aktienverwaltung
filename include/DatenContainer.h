@@ -29,9 +29,8 @@ class DatenContainer
         void Delete(std::string);
         void State();
 
-        /*
         void SetNameTable(Hashtable* value) { nameTable = value; };
-        void SetTokenTable(Hashtable* value) { tokenTable = value; };*/
+        void SetTokenTable(Hashtable* value) { tokenTable = value; };
 
         Hashtable* GetNameTable() const { return nameTable; };
         Hashtable* GetTokenTable() const { return tokenTable; };

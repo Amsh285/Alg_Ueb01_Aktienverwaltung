@@ -28,6 +28,9 @@ Hashtable* HashTableDeserializer::Deserialize(std::string path, int tableSize)
     JsonParser parser;
 
     Hashtable* result = new Hashtable(tableSize);
+
+    //std::cout << std::endl << "fileString:" << contents << std::endl << std::endl;
+
     JsonObject* root = (JsonObject*)parser.ParseJsonString(contents);
 
     std::vector<JsonNode*> shareContainerObjects = root->GetChildren();
@@ -95,7 +98,6 @@ Share* HashTableDeserializer::BuildShare(JsonObject* shareObject)
     JsonValue* isinValue = (JsonValue*)GetByName("isin", shareObject);
 
     Share* result = new Share(nameValue->GetValue(), tokenValue->GetValue(), isinValue->GetValue());
-
 
     JsonObject* entryArrayObject = (JsonObject*)GetByName("shareEntries", shareObject);
     std::vector<ShareEntry*> entries = BuildShareEntries(entryArrayObject);

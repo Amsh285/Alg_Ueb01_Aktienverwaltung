@@ -3,6 +3,7 @@
 #include <string>
 #include <math.h>
 #include <vector>
+#include <stdexcept>
 
 #include "Hashtable.h"
 #include "Share.h"
@@ -13,18 +14,12 @@
 #include "DummyTableTestClass.h"
 
 #include "HashTableSerializer.h"
+#include "HashTableDeserializer.h"
 
 #include "Json/StringHelper.h"
 #include "Json/JsonUtilities.h"
-//#include "HashTableDeserializer.h"
-
-
-//#include "Json/InsideStringLiteralState.h"
-//#include "Json/JsonParser.h"
-
 
 #define SIZE 2003
-
 
 enum ConsoleCommands {
     ConsoleCommand_Help,
@@ -84,62 +79,71 @@ int main()
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Import], stdstring::StringComparisonOption_CaseInSensitive))
         {
-            std::string  fileName;
-
-            std::cout << "[Kursdaten Import] " << std::endl;
-
-            std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
-            getline(std::cin, shareKey);
-
-            if(Table.Find(shareKey) == NULL)
+            try
             {
-                std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
-                continue;  // jump back to loop begin and ignore following code
-            }
+                std::string  fileName;
 
-            std::cout << "Geben Sie einen Dateinamen fuer die Import ein: ";
-            getline(std::cin, fileName);
+                std::cout << "[Kursdaten Import] " << std::endl;
 
-            std::cout << "Importiere die Datei: " << fileName << std::endl;
+                std::cout << "Geben Sie den Namen oder das Kuerzel der Aktie an fuer die der Import durchgefuehrt werden soll: ";
+                getline(std::cin, shareKey);
 
-            std::ifstream inputStream (fileName);
-
-            if(inputStream.is_open())
-            {
-                std::string row;
-                std::getline(inputStream, row);
-
-                std::vector<ShareEntry*> entries;
-
-                while(std::getline(inputStream, row))
+                if(Table.Find(shareKey) == NULL)
                 {
-                    ShareEntry* item = shareentryfactory::CreateFromCsvString(row);
-                    entries.push_back(item);
+                    std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
+                    continue;  // jump back to loop begin and ignore following code
                 }
 
-                if(entries.size() > 30)
+                std::cout << "Geben Sie einen Dateinamen fuer die Import ein: ";
+                getline(std::cin, fileName);
+
+                std::cout << "Importiere die Datei: " << fileName << std::endl;
+
+                std::ifstream inputStream (fileName);
+
+                if(inputStream.is_open())
                 {
-                    std::vector<ShareEntry*>::const_iterator beginDeletes = entries.begin();
-                    std::vector<ShareEntry*>::const_iterator beginTakes = entries.end() - 30;
-                    std::vector<ShareEntry*>::const_iterator last = entries.end();
+                    std::string row;
+                    std::getline(inputStream, row);
 
-                    std::vector<ShareEntry*> deletes(beginDeletes, beginTakes);
-                    std::vector<ShareEntry*> takes(beginTakes, last);
+                    std::vector<ShareEntry*> entries;
 
-                    //std::cout << "delete.size(): " << deletes.size() << " " << "takes.size(): " << takes.size();
+                    while(std::getline(inputStream, row))
+                    {
+                        ShareEntry* item = shareentryfactory::CreateFromCsvString(row);
+                        entries.push_back(item);
+                    }
 
-                    for(unsigned int i = 0;i < deletes.size();++i)
-                        delete deletes[i];
+                    if(entries.size() > 30)
+                    {
+                        std::vector<ShareEntry*>::const_iterator beginDeletes = entries.begin();
+                        std::vector<ShareEntry*>::const_iterator beginTakes = entries.end() - 30;
+                        std::vector<ShareEntry*>::const_iterator last = entries.end();
 
-                    Table.Find(shareKey)->setEntries(takes);
+                        std::vector<ShareEntry*> deletes(beginDeletes, beginTakes);
+                        std::vector<ShareEntry*> takes(beginTakes, last);
+
+                        std::cout << "gesamt: " << entries.size() << " " << "delete.size(): " << deletes.size() << " " << "takes.size(): " << takes.size() << std::endl;
+
+                        for(unsigned int i = 0;i < deletes.size();++i)
+                            delete deletes[i];
+
+                        Table.Find(shareKey)->setEntries(takes);
+
+                        std::cout << "Anzahl auf Aktie: " << Table.Find(shareKey)->GetShareEntries().size() << std::endl;
+                    }
+                    else
+                        Table.Find(shareKey)->setEntries(entries);
                 }
                 else
-                    Table.Find(shareKey)->setEntries(entries);
-            }
-            else
-                std::cout << "Die Datei: " << fileName << " konnte nicht geoeffnet werden" << std::endl;
+                    std::cout << "Die Datei: " << fileName << " konnte nicht geoeffnet werden" << std::endl;
 
-            std::cout << "[Kursdaten Import beendet] " << std::endl;
+                std::cout << "[Kursdaten Import beendet] " << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "Fehler beim Kursdaten- Import: " << e.what() << std::endl;
+            }
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Plot], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -152,8 +156,8 @@ int main()
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
                 continue;  // if not found, loop will jump back to start
             }
-            Table.Find(shareKey)->plotLast30Close();
 
+            Table.Find(shareKey)->plotLast30Close();
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Search], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -166,8 +170,8 @@ int main()
                 std::cout << shareKey << " koennte nicht gefunden werden" << std::endl;
                 continue;  // if not found, loop will jump back to start
             }
-            Table.Find(shareKey)->printInfo();
 
+            Table.Find(shareKey)->printInfo();
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Delete], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -191,12 +195,30 @@ int main()
         {
             std::cout << "Lade Aktien..." << std::endl;
 
-            /*
-            HashTableDeserializer deserializer;
-            HashTable* nameTable = deserializer.Deserialize("nameTable.json", SIZE);
-            Hashtable* tokenTable = deserializer.Deserialize("tokenTable.json", SIZE);*/
+            try
+            {
+                HashTableDeserializer deserializer;
+                Hashtable* nameTable = deserializer.Deserialize("Data/nameTable.json", SIZE);
+                Hashtable* tokenTable = deserializer.Deserialize("Data/tokenTable.json", SIZE);
 
-            std::cout << "Laden beendet..." << std::endl;
+                Hashtable* oldNameTable = Table.GetNameTable();
+                Hashtable* oldtokenTable = Table.GetTokenTable();
+
+                if(oldNameTable != nullptr)
+                    delete oldNameTable;
+
+                if(oldtokenTable != nullptr)
+                    delete oldtokenTable;
+
+                Table.SetNameTable(nameTable);
+                Table.SetTokenTable(tokenTable);
+
+                std::cout << "Laden beendet..." << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << "Fehler beim laden der Aktion: " << e.what() << std::endl;
+            }
         }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Quit], stdstring::StringComparisonOption_CaseInSensitive))
         {
@@ -208,10 +230,7 @@ int main()
         }
     }
 
-
     // ------ test code --------
-
-
 
     /*Share share1("Microsoft", "msft", "123");
     //Share sharex("msft", "Microsoft", "23");  // gleiche aktie
@@ -235,10 +254,6 @@ int main()
     std::cout << table.getIndex(150) << std::endl;
     std::cout << table.getIndex(200) << std::endl;
     std::cout << table.getIndex(250) << std::endl;
-
-
-
-
 
     return 0;
 }
