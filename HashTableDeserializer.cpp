@@ -17,16 +17,12 @@ Hashtable* HashTableDeserializer::Deserialize(std::string path, int tableSize)
     if (!inputStream)
         throw HashTableDeserializerException("Could not read File: " + path + ".");
 
-    inputStream.seekg(0, std::ios::end);
-    size_t len = inputStream.tellg();
-    inputStream.seekg(0);
-
-    std::string contents(len + 1, '\0');
-    inputStream.read(&contents[0], len);
-    inputStream.close();
+    std::stringstream buffer;
+    std::string contents;
+    buffer << inputStream.rdbuf();
+    contents = buffer.str();
 
     JsonParser parser;
-
     Hashtable* result = new Hashtable(tableSize);
 
     //std::cout << std::endl << "fileString:" << contents << std::endl << std::endl;
@@ -43,6 +39,9 @@ Hashtable* HashTableDeserializer::Deserialize(std::string path, int tableSize)
 
         JsonValue* indexValue = (JsonValue*)GetByName("hashTableIndex", shareContainerObject);
         int index = std::stoi(indexValue->GetValue());
+
+        std::cout << "Deserialized: " << container->GetValue()->GetName() << std::endl;
+        std::cout << "Deserialized ChildrenCount: " << container->GetValue()->GetShareEntries().size() << std::endl;
 
         hashTableItemContainer[index] = container;
     }
@@ -97,7 +96,7 @@ Share* HashTableDeserializer::BuildShare(JsonObject* shareObject)
     JsonValue* tokenValue = (JsonValue*)GetByName("token", shareObject);
     JsonValue* isinValue = (JsonValue*)GetByName("isin", shareObject);
 
-    Share* result = new Share(nameValue->GetValue(), tokenValue->GetValue(), isinValue->GetValue());
+    Share* result = new Share(nameValue->GetStringValue(), tokenValue->GetStringValue(), isinValue->GetStringValue());
 
     JsonObject* entryArrayObject = (JsonObject*)GetByName("shareEntries", shareObject);
     std::vector<ShareEntry*> entries = BuildShareEntries(entryArrayObject);
@@ -135,7 +134,7 @@ std::vector<ShareEntry*> HashTableDeserializer::BuildShareEntries(JsonObject* en
         double volume = std::stod(volumeValue->GetValue());
         double adjustedClose = std::stod(adjustedCloseValue->GetValue());
 
-        ShareEntry* value = new ShareEntry(dateValue->GetValue(), open, high, low, close, volume, adjustedClose);
+        ShareEntry* value = new ShareEntry(dateValue->GetStringValue(), open, high, low, close, volume, adjustedClose);
         result.push_back(value);
     }
 

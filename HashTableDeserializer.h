@@ -2,6 +2,7 @@
 #define HASHTABLEDESERIALIZER_H
 
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <vector>

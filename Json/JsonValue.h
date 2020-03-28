@@ -5,6 +5,7 @@
 
 #include "JsonNode.h"
 #include "JsonObject.h"
+#include "StringHelper.h"
 
 //class JsonObject;
 
@@ -13,7 +14,8 @@ class JsonValue : public JsonNode
     public:
         JsonValue(std::string name, std::string value, JsonObject* parent);
 
-        std::string GetValue() { return value; };
+        std::string GetValue() const { return value; };
+        std::string GetStringValue() const;
 
         virtual std::string ToJsonString();
         virtual ~JsonValue();

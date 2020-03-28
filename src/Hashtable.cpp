@@ -48,6 +48,8 @@ int Hashtable::Find(std::string key)
     {
         if(ContainerTable[index]->HasValue())
         {
+            std::string scheissC = ContainerTable[index]->GetValue()->GetName();
+
             if(ContainerTable[index]->GetValue()->GetName() == key || ContainerTable[index]->GetValue()->GetToken() == key)
             {
                 return index; // if key is name or token, one general implementation

@@ -65,14 +65,6 @@ namespace shareentryfactory
                 "Die Csv- Zeile weiﬂt ein ungueltiges Format auf es wurden " + std::to_string(numberOfExpectedColumns) +
                 " erwartet. Es wurden aber nur " + std::to_string(actualColumnCount) + " gefunden." );
 
-        /*
-        Todo: think about this possible exceptions in the following code.
-
-        If no conversion could be performed, an invalid_argument exception is thrown.
-        If the value read is out of the range of representable values by a double
-        (in some library implementations, this includes underflows), an out_of_range exception is thrown.
-        */
-
         return new ShareEntry(shareEntryData[0], std::stod(shareEntryData[1], nullptr), std::stod(shareEntryData[2], nullptr)
             , std::stod(shareEntryData[3], nullptr), std::stod(shareEntryData[4], nullptr)
             , std::stod(shareEntryData[5], nullptr), std::stod(shareEntryData[6], nullptr));

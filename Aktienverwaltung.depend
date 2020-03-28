@@ -5,11 +5,12 @@
 1585098634 d:\gitprojects\alg_ueb01_aktienverwaltung\csvlineexception.h
 	<string>
 
-1585395687 source:d:\gitprojects\alg_ueb01_aktienverwaltung\hashtabledeserializer.cpp
+1585414499 source:d:\gitprojects\alg_ueb01_aktienverwaltung\hashtabledeserializer.cpp
 	"HashTableDeserializer.h"
 
-1585394415 d:\gitprojects\alg_ueb01_aktienverwaltung\hashtabledeserializer.h
+1585410613 d:\gitprojects\alg_ueb01_aktienverwaltung\hashtabledeserializer.h
 	<iostream>
+	<sstream>
 	<fstream>
 	<string>
 	<vector>
@@ -79,10 +80,11 @@
 	<stdexcept>
 	"JsonNode.h"
 
-1585390093 d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonvalue.h
+1585417883 d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonvalue.h
 	<string>
 	"JsonNode.h"
 	"JsonObject.h"
+	"StringHelper.h"
 
 1585403373 d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonobjectidentifier.h
 	<string>
@@ -191,7 +193,7 @@
 1585405089 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonutilities.cpp
 	"JsonUtilities.h"
 
-1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonvalue.cpp
+1585417850 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\jsonvalue.cpp
 	"JsonValue.h"
 
 1585390093 source:d:\gitprojects\alg_ueb01_aktienverwaltung\json\stringhelper.cpp
@@ -252,7 +254,7 @@
 1585390580 source:d:\gitprojects\alg_ueb01_aktienverwaltung\src\dummytabletestclass.cpp
 	"DummyTableTestClass.h"
 
-1585391610 source:d:\gitprojects\alg_ueb01_aktienverwaltung\src\hashtable.cpp
+1585411977 source:d:\gitprojects\alg_ueb01_aktienverwaltung\src\hashtable.cpp
 	"Hashtable.h"
 	"../ShareContainer.h"
 	"../Share.h"
@@ -260,7 +262,7 @@
 	<string>
 	<iostream>
 
-1585098674 source:d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.cpp
+1585417438 source:d:\gitprojects\alg_ueb01_aktienverwaltung\utilities.cpp
 	"Utilities.h"
 
 1585405147 d:\gitprojects\alg_ueb01_aktienverwaltung\json\globaljsondefinitions.h
