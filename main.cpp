@@ -148,6 +148,10 @@ int main()
             getline(std::cin, shareKey);
             Table.Delete(shareKey);
         }
+        else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Save], stdstring::StringComparisonOption_CaseInSensitive))
+        {
+
+        }
         else if(stdstring::Equals(command, supportedCommands[ConsoleCommand_Quit], stdstring::StringComparisonOption_CaseInSensitive))
         {
             break;
