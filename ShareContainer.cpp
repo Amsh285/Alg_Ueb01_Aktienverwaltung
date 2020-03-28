@@ -1,5 +1,10 @@
 #include "ShareContainer.h"
 
+ShareContainer::ShareContainer()
+    : hasValue(true)
+{
+}
+
 ShareContainer::ShareContainer(Share *value)
 {
     if(value == NULL)

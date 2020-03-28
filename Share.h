@@ -16,14 +16,14 @@ class Share
         std::string GetName() const { return name; };
         std::string GetToken() const { return token; };
         std::string GetIsin() const { return isin; };
+        
         std::vector<ShareEntry*> GetShareEntries() const { return shareEntries; };
+
         void setEntries(std::vector<ShareEntry*> &entries);
         void plotLast30Close() const;
         void printInfo() const;
 
         int GetHashCode();
-
-        //bool Equals(Share* value);  // not needed anymore (I think)
     protected:
 
     private:
