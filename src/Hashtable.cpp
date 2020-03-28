@@ -11,7 +11,7 @@ Hashtable::Hashtable(int tableSize)
 {
     this->tableSize = tableSize;
 
-    ContainerTable = new ShareContainer*[tableSize];  // creates array of pointers
+    ContainerTable = new ShareContainer*[tableSize];  // creates array of pointers to shareContainers
 }
 
 Hashtable::~Hashtable()
@@ -22,22 +22,17 @@ Hashtable::~Hashtable()
 void Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
 {
     int index = (HashUtilities::HashString(key)) % this->tableSize;
-    int originalIndex = index;
+    int originalIndex = index;  // save original index to probe with
     int i = 1;
 
-    while(!isEmpty(index))
-    {
-        if(!(ContainerTable[index]->HasValue()))       // if bucket is not empty but has no value (deleted share)
-        {
-            delete ContainerTable[index];                // delete container to make room for new one
-            break;                                       // break loop and insert
-        }
 
+    while(!isEmpty(index))  // find next empty spot
+    {
         index = (originalIndex + (i*i)) % tableSize;
         i++;
     }
 
-    ContainerTable[index] = ShareContainerAdress;
+    ContainerTable[index] = ShareContainerAdress;  // insert at this spot
 }
 
 int Hashtable::Find(std::string key)
@@ -46,15 +41,15 @@ int Hashtable::Find(std::string key)
     int originalIndex = index;
     int i = 1;
 
-    while(ContainerTable[index] != NULL)
+    while(!isEmpty(index)) // search as long as current index is not empty
     {
         if(ContainerTable[index]->HasValue())
+        {
             if(ContainerTable[index]->GetValue()->GetName() == key || ContainerTable[index]->GetValue()->GetToken() == key)
             {
-                // if key is name or token, one general implementation
-                return index;
+                return index; // if key is name or token, one general implementation
             }
-
+        }
         index = (originalIndex + (i*i)) % tableSize;
         i++;
     }

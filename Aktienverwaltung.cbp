@@ -73,9 +73,11 @@
 		<Unit filename="Utilities.cpp" />
 		<Unit filename="Utilities.h" />
 		<Unit filename="include/DatenContainer.h" />
+		<Unit filename="include/DummyTableTestClass.h" />
 		<Unit filename="include/Hashtable.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/DatenContainer.cpp" />
+		<Unit filename="src/DummyTableTestClass.cpp" />
 		<Unit filename="src/Hashtable.cpp" />
 		<Extensions>
 			<code_completion />
