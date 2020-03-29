@@ -145,6 +145,10 @@ JsonNode* JsonParser::ParseJsonArray(const std::string& objectSegment, std::stri
         .WithParent(parent)
         .Build();
 
+    // Empty Array
+    if(segments.size() == 1 && segments[0] == "")
+        return result;
+
     for(const std::string& segment : segments)
     {
         IdentificationResult identification = objectIdentifier.IdentifyElement(segment);

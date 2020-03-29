@@ -40,8 +40,8 @@ Hashtable* HashTableDeserializer::Deserialize(std::string path, int tableSize)
         JsonValue* indexValue = (JsonValue*)GetByName("hashTableIndex", shareContainerObject);
         int index = std::stoi(indexValue->GetValue());
 
-        std::cout << "Deserialized: " << container->GetValue()->GetName() << std::endl;
-        std::cout << "Deserialized ChildrenCount: " << container->GetValue()->GetShareEntries().size() << std::endl;
+        //std::cout << "Deserialized: " << container->GetValue()->GetName() << std::endl;
+        //std::cout << "Deserialized ChildrenCount: " << container->GetValue()->GetShareEntries().size() << std::endl;
 
         hashTableItemContainer[index] = container;
     }

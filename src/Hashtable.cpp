@@ -24,10 +24,9 @@ Hashtable::~Hashtable()
 
 void Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
 {
-    int index = (HashUtilities::HashString(key)) % this->tableSize;
+    int index = GetHashIndex(key);
     int originalIndex = index;  // save original index to probe with
     int i = 1;
-
 
     while(!isEmpty(index))  // find next empty spot
     {
@@ -40,7 +39,7 @@ void Hashtable::Insert(ShareContainer* ShareContainerAdress, std::string key)
 
 int Hashtable::Find(std::string key)
 {
-    int index = (HashUtilities::HashString(key)) % this->tableSize;
+    int index = GetHashIndex(key);
     int originalIndex = index;
     int i = 1;
 
@@ -86,7 +85,11 @@ bool Hashtable::isEmpty(int index)
         return false;
 }
 
-
+int Hashtable::GetHashIndex(std::string key)
+{
+    int hashIndex = HashUtilities::HashString(key);
+    return std::abs(hashIndex % this->tableSize);
+}
 
 
 
