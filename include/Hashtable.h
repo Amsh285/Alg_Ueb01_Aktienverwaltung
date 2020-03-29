@@ -4,7 +4,7 @@
 #include "../ShareContainer.h"
 
 #include <string>
-
+#include <cmath>
 
 class Hashtable
 {
@@ -21,11 +21,10 @@ class Hashtable
 
     private:
         bool isEmpty(int);
+        int GetHashIndex(std::string key);
 
         int tableSize;
         ShareContainer** ContainerTable;  // double pointer
-                                            // a pointer of type ShareContainer points to an array of pointers
-
 };
 
 #endif // HASHTABLE_H
